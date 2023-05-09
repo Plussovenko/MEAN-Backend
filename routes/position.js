@@ -1,14 +1,16 @@
 const express = require('express');
+const passport = require('passport');
+
 const controller = require('../controllers/position')
 const router = express.Router();
 
-router.get('/:categoryId', controller.getByCategoryId)
+router.get('/:categoryId', passport.authenticate('jwt', {session: false}), controller.getByCategoryId)
 
-router.post('/', controller.createPosition)
+router.post('/', passport.authenticate('jwt', {session: false}), controller.createPosition)
 
-router.patch('/:id', controller.updatePosition)
+router.patch('/:id', passport.authenticate('jwt', {session: false}), controller.updatePosition)
 
-router.delete('/:id', controller.removePosition)
+router.delete('/:id', passport.authenticate('jwt', {session: false}), controller.removePosition)
 
 
 module.exports = router;
