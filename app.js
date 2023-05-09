@@ -16,6 +16,7 @@ mongoose.connect(keys.mongoURI)
   .catch(error => console.log(error) )
 
 app.use(passport.initialize());
+app.use('/uploads', express.static('uploads'));
 require('./middleware/passport')(passport);
 
 app.use(require('morgan')('dev'));
